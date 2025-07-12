@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title> bánh quyyy </title>
+ <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Pacifico', sans-serif;
+      height: 100vh;
+      text-align: center;
+      padding-top: 100px;
+      background: linear-gradient(to bottom, #aef6ff, #ffc1dc);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+     h2 { 
+       color: black
+    }
+    .cookie-container {
+      position: relative;
+      width: 120px;
+      height: 100px;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+
+    .half {
+      font-size: 60px;
+      position: absolute;
+      top: 0;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+    }
+
+    .left {
+      left: 10px;
+    }
+
+    .right {
+      right: 10px;
+    }
+
+    .broken .left {
+      transform: translateX(-120px) rotate(-40deg);
+      opacity: 0;
+    }
+
+    .broken .right {
+      transform: translateX(120px) rotate(40deg);
+      opacity: 0;
+    }
+
+    #message {
+      margin-top: 30px;
+      font-size: 24px;
+      color: black;
+      font-weight: bold;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+      min-height: 30px;
+    }
+
+    #message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    button {
+      margin-top: 40px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: pink;
+      border: none;
+      border-radius: 5px;
+      color: black;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    button:active {
+      animation: pulse 0.2s;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <h2> Tớ là bánh quy Phạm Hà My🥕</h2>
+  <div class="cookie-container" onclick="openFortune()" id="cookieBox">
+    <div class="half left">🍪</div>
+    <div class="half right">🍪</div>
+  </div>
+
+  <div id="message"></div>
+
+  <button onclick="resetFortune()">Thử lại</button>
+
+  <script>
+    const fortunes = [
+      "Xin chàooooooo",
+      "Chúc cậu một ngày tốt lành",
+      "Chúc bạn may mắn lần sau hẹ hẹ hẹ",
+      "Cậu thích bánh vị gì?",
+      "👽👽👽",
+      "Chào buổi tối",
+    ];
+
+    function openFortune() {
+      const cookieBox = document.getElementById("cookieBox");
+      const messageDiv = document.getElementById("message");
+
+      cookieBox.classList.add("broken");
+
+      setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * fortunes.length);
+        messageDiv.textContent = fortunes[randomIndex];
+        messageDiv.classList.add("show");
+      }, 800);
+    }
+
+    function resetFortune() {
+      const cookieBox = document.getElementById("cookieBox");
+      const messageDiv = document.getElementById("message");
+
+      cookieBox.classList.remove("broken");
+      messageDiv.textContent = "";
+      messageDiv.classList.remove("show");
+    }
+  </script>
+
+</body>
+</html>
